@@ -1,9 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿#region
+
+//System Imports
+using System;
 using System.Threading.Tasks;
+
+//Custom Imports
 using WebhookExc.DiscordAPI;
+
+#endregion
 
 namespace WebhookExc
 {
@@ -11,36 +15,32 @@ namespace WebhookExc
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please enter webhook url");
-            Console.Write("> ");
+            Console.Write("Webhook Url > ");
             string webhook = Console.ReadLine();
 
-            Console.WriteLine();
-            Console.WriteLine("Please enter webhook name");
-            Console.Write("> ");
+            Console.Write("Webhook Name > ");
             string webhookName = Console.ReadLine();
 
-            Console.WriteLine("Creating webhook connection...");
+            Console.WriteLine("Creating webhook connection... (Please wait)");
 
             Webhook wb = new Webhook(webhookName, webhook);
-
-            wb.AvatarSettings(Avatar.Custom, WebhookName.Custom);
-
-            Console.WriteLine();
 
             while (true)
             {
                 Console.WriteLine();
                 Console.Write("> ");
                 string msg = Console.ReadLine();
-                try
+                Task.Factory.StartNew(() =>
                 {
-                    wb.Invoke(msg);
-                }
-                catch
-                {
-                    Console.WriteLine("You are being rate limited by discord!");
-                }
+                    try
+                    {
+                        wb.Invoke(msg);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("You are being rate limited by discord!");
+                    }
+                });
             }
         }
     }

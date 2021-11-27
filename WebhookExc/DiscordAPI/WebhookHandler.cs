@@ -1,5 +1,10 @@
-﻿using System.Collections.Specialized;
+﻿#region
+
+//System Imports
 using System.Net;
+using System.Collections.Specialized;
+
+#endregion
 
 namespace WebhookExc.DiscordAPI
 {
@@ -7,7 +12,7 @@ namespace WebhookExc.DiscordAPI
     {
         public byte[] InvokeWebhook(string uri, NameValueCollection pairs)
         {
-            using (WebClient webClient = new WebClient())
+            using (WebClient webClient = new WebClient()) // creating new webclients so you can send faster (Nuker support ig)
                 return webClient.UploadValues(uri, pairs);
         }
 

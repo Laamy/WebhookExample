@@ -2,30 +2,20 @@
 {
     class Webhook
     {
-        public Webhook(string name, string url)
+        public Webhook(string webhookName, string webhookUrl)
         {
-            SetName(name);
-            SetUrl(url);
+            this.webhookName = webhookName;
+            this.webhookUrl = webhookUrl;
         }
 
-        private WebhookHandler webhook = new WebhookHandler();
+        public WebhookHandler webhook = new WebhookHandler();
 
-        private string name = "WebhookSender";
-        private WebhookName nameInformation = WebhookName.Default;
+        public string webhookName = "WebhookSender";
+        public string webhookUrl = "WebhookUrl";
+        public string avatarUrl = "AvatarUrl";
 
-        private string url = "WebhookUrl";
-
-        private string avatarUrl = "AvatarUrl";
-        private Avatar avatarInformation = Avatar.Default;
-
-        public void AvatarSettings(Avatar avatarInformation = Avatar.Default, WebhookName nameInformation = WebhookName.Default)
-        {
-            this.avatarInformation = avatarInformation;
-            this.nameInformation = nameInformation;
-        }
-        public void SetName(string name) => this.name = name;
-        public void SetUrl(string url) => this.url = url;
-        public void AvatarUrl(string avatarUrl) => this.avatarUrl = avatarUrl;
+        public WebhookName nameInformation = WebhookName.Custom;
+        public Avatar avatarInformation = Avatar.Custom;
 
         public void Invoke(string message)
         {
@@ -35,10 +25,10 @@
                     switch (nameInformation)
                     {
                         case WebhookName.Default:
-                            webhook.HandledPost(message, url);
+                            webhook.HandledPost(message, webhookUrl);
                             break;
                         case WebhookName.Custom:
-                            webhook.HandledPost(message, name, url);
+                            webhook.HandledPost(message, webhookName, webhookUrl);
                             break;
                     }
                     break;
@@ -46,10 +36,10 @@
                     switch (nameInformation)
                     {
                         case WebhookName.Default:
-                            webhook.HandledPost(message, url, "https://cdn1.dotesports.com/wp-content/uploads/2018/08/11165120/47410681-4265-41a6-ab71-679b40e30d78.jpg", 1);
+                            webhook.HandledPost(message, webhookUrl, "https://cdn1.dotesports.com/wp-content/uploads/2018/08/11165120/47410681-4265-41a6-ab71-679b40e30d78.jpg", 1);
                             break;
                         case WebhookName.Custom:
-                            webhook.HandledPost(message, name, url, "https://cdn1.dotesports.com/wp-content/uploads/2018/08/11165120/47410681-4265-41a6-ab71-679b40e30d78.jpg");
+                            webhook.HandledPost(message, webhookName, webhookUrl, "https://cdn1.dotesports.com/wp-content/uploads/2018/08/11165120/47410681-4265-41a6-ab71-679b40e30d78.jpg");
                             break;
                     }
                     break;
@@ -57,10 +47,10 @@
                     switch (nameInformation)
                     {
                         case WebhookName.Default:
-                            webhook.HandledPost(message, name, url, avatarUrl);
+                            webhook.HandledPost(message, webhookName, webhookUrl, avatarUrl);
                             break;
                         case WebhookName.Custom:
-                            webhook.HandledPost(message, name, url, avatarUrl);
+                            webhook.HandledPost(message, webhookName, webhookUrl, avatarUrl);
                             break;
                     }
                     break;
