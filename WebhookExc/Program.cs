@@ -39,7 +39,7 @@ namespace WebhookExc
                 }
                 catch
                 {
-                    Console.WriteLine("You are being rate limited!");
+                    Console.WriteLine("You are being rate limited by discord!");
                 }
             }
         }
