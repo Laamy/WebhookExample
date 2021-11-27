@@ -19,5 +19,32 @@ namespace WebhookExc.DiscordAPI
                 { "content", message }
             });
         }
+
+        public void HandledPost(string message, string name, string webhook, string avatarUrl)
+        {
+            InvokeWebhook(webhook, new NameValueCollection()
+            {
+                { "avatar", avatarUrl },
+                { "username", name },
+                { "content", message }
+            });
+        }
+
+        public void HandledPost(string message, string webhook)
+        {
+            InvokeWebhook(webhook, new NameValueCollection()
+            {
+                { "content", message }
+            });
+        }
+
+        public void HandledPost(string message, string webhook, string avatarUrl, int i)
+        {
+            InvokeWebhook(webhook, new NameValueCollection()
+            {
+                { "avatar", avatarUrl },
+                { "content", message }
+            });
+        }
     }
 }

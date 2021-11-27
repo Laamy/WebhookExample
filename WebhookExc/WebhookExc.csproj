@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiscordAPI\Enums.cs" />
     <Compile Include="DiscordAPI\Webhook.cs" />
     <Compile Include="DiscordAPI\WebhookHandler.cs" />
     <Compile Include="Program.cs" />

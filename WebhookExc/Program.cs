@@ -24,6 +24,8 @@ namespace WebhookExc
 
             Webhook wb = new Webhook(webhookName, webhook);
 
+            wb.AvatarSettings(Avatar.Custom, WebhookName.Custom);
+
             Console.WriteLine();
 
             while (true)
